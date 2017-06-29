@@ -18,19 +18,22 @@ import javax.swing.JPanel;
 public class View extends JFrame implements ViewInterface {
     private final GridLayout grid;     // default grid-size for tic-tac-toe
     private final JButton[] buttons;   // an array containing the 9 buttons
+    private int[] disabledFields = {0,1,5,6,7,8,12,13,35,36,40,41,42,43,47,48};
 
     public View() {
-        super("tic-tac-toe");
-        grid = new GridLayout(3, 3);
-        buttons = new JButton[9];
+        super("Peg Solitaire");
+        grid = new GridLayout(7, 7);
+        buttons = new JButton[49];
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addComponentsToPane(getContentPane());
         pack();
         setVisible(true);
+        
+        buildBoard();
 
-        getRootPane().setDefaultButton(buttons[4]);
-        buttons[4].requestFocus();
+        //getRootPane().setDefaultButton(buttons[4]);
+        //buttons[4].requestFocus();
     }
 
     /**
@@ -39,7 +42,7 @@ public class View extends JFrame implements ViewInterface {
     public void addComponentsToPane(final Container pane) {
         final JPanel panel = new JPanel();
         panel.setLayout(grid);        
-        panel.setPreferredSize(new Dimension(300, 300));
+        panel.setPreferredSize(new Dimension(400, 400));
 
         for (int i = 0; i < buttons.length; i++) {
             buttons[i] = new JButton();
@@ -106,4 +109,30 @@ public class View extends JFrame implements ViewInterface {
     public int getNumberOfButtons() {
         return buttons.length;
     }
+
+	@Override
+	public void buildBoard() {
+		for (JButton button : buttons) {
+			try {
+				Image icon = ImageIO.read(View.class.getResource("icons/O.png"));
+				button.setIcon(new ImageIcon(icon));
+		        button.setEnabled(true);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+		
+		for (int i : disabledFields) {
+			try {
+				Image icon = ImageIO.read(View.class.getResource("icons/X.png"));
+				buttons[i].setIcon(new ImageIcon(icon));
+		        buttons[i].setEnabled(false);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+        }
+		
+		buttons[24].setIcon(null);
+
+	}
 }

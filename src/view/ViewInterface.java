@@ -6,6 +6,14 @@ import javax.swing.JButton;
 
 public interface ViewInterface
 {
+	/**
+     * Changes a field to a user symbol.
+     * 
+     * @param symbol    the symbol of the current player.
+     * @param button    the button that was clicked.
+     */
+    public void buildBoard();
+    
     /**
      * Changes a field to a user symbol.
      * 
