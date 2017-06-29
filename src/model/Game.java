@@ -91,4 +91,8 @@ public class Game {
     public void incTurnCounterAndSetUserSymbol() {
         incrementTurnsCounter();
     }
+
+	public Symbol getUserSymbol() {
+		return null;
+	}
 }

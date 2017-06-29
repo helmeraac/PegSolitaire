@@ -59,11 +59,11 @@ public class Controller implements ActionListener {
             int indexOfViewButton = getJButtonIndex((JButton) e.getSource());
 
             Pair coordinates = convertToCoordinates(indexOfViewButton);
-            /*game.setFieldOwner(game.getUserSymbol(),
+            game.setFieldOwner(game.getUserSymbol(),
                                coordinates.first,
-                               coordinates.second);*/
+                               coordinates.second);
 
-            //view.updateBoard(game.getUserSymbol(), (JButton) e.getSource());
+            view.updateBoard(game.getUserSymbol(), (JButton) e.getSource());
         }
     }
 
@@ -90,7 +90,8 @@ public class Controller implements ActionListener {
      * @return          a Pair object containing the x and y coordinates.
      */
     private Pair convertToCoordinates(int index) {
-        int first = 0, second = 0; // forced initialization
+        int first = 0;
+        int second = 0; // forced initialization
 
         switch (index) {
             case 0: first = 0; second = 0; break;
@@ -102,6 +103,7 @@ public class Controller implements ActionListener {
             case 6: first = 2; second = 0; break;
             case 7: first = 2; second = 1; break;
             case 8: first = 2; second = 2; break;
+            default: break;
         }
 
         return Pair.create(first, second);

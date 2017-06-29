@@ -31,9 +31,6 @@ public class View extends JFrame implements ViewInterface {
         setVisible(true);
         
         buildBoard();
-
-        //getRootPane().setDefaultButton(buttons[4]);
-        //buttons[4].requestFocus();
     }
 
     /**
@@ -118,7 +115,7 @@ public class View extends JFrame implements ViewInterface {
 				button.setIcon(new ImageIcon(icon));
 		        button.setEnabled(true);
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(".png not found.");
 			}
         }
 		
@@ -128,7 +125,7 @@ public class View extends JFrame implements ViewInterface {
 				buttons[i].setIcon(new ImageIcon(icon));
 		        buttons[i].setEnabled(false);
 			} catch (IOException e) {
-				e.printStackTrace();
+				System.out.println(".png not found.");
 			}
         }
 		
