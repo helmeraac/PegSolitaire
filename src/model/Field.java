@@ -20,6 +20,9 @@ public class Field{
     public static Field getDefault() {
         return new Field(Symbol.O);
     }
+    public static Field getNone() {
+        return new Field(Symbol.NONE);
+    }
 
     /**
      * Returns the owner of a field as a Symbol.
