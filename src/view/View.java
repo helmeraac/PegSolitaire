@@ -120,13 +120,8 @@ public class View extends JFrame implements ViewInterface {
         }
 		
 		for (int i : disabledFields) {
-			try {
-				Image icon = ImageIO.read(View.class.getResource("icons/X.png"));
-				buttons[i].setIcon(new ImageIcon(icon));
-		        buttons[i].setEnabled(false);
-			} catch (IOException e) {
-				System.out.println(".png not found.");
-			}
+			  buttons[i].setIcon(null);
+		      buttons[i].setEnabled(false);
         }
 		
 		buttons[24].setIcon(null);

@@ -34,6 +34,13 @@ public class Game {
     public void setFieldOwner(Symbol userSymbol, int x, int y) {
         board.setFieldOwner(userSymbol, x, y);
     }
+    
+    public void selectPeg(){
+    	
+    }
+    public void movePeg(){
+    	
+    }
 
     /**
      * Returns the owner of a specific field.

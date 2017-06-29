@@ -13,6 +13,7 @@ import javax.swing.JButton;
 public class Controller implements ActionListener {
     private Game game;
     private ViewInterface view;
+    private int actionCounter;
     
     /**
      * Overloaded constructor. Initializes the game and view, and
@@ -24,6 +25,7 @@ public class Controller implements ActionListener {
     public Controller() {
         this.game = new Game();
         this.view = new View();
+        actionCounter=0;
         addActionListeners();
     }
 
@@ -50,6 +52,12 @@ public class Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (!game.isGameOver()) {
+        	actionCounter++;
+        	if(!(actionCounter%2==0)){
+        		game.selectPeg();
+        	}else{
+        		game.movePeg();
+        	}
             game.incTurnCounterAndSetUserSymbol();
 
             // The indices of the View JButton array is 0-8 while the
@@ -63,7 +71,7 @@ public class Controller implements ActionListener {
                                coordinates.first,
                                coordinates.second);
 
-            view.updateBoard(game.getUserSymbol(), (JButton) e.getSource());
+            //view.updateBoard(game.getUserSymbol(), (JButton) e.getSource());
         }
     }
 
