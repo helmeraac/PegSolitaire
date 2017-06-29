@@ -57,15 +57,35 @@ public class View extends JFrame implements ViewInterface {
      * @param symbol    the symbol of the current player.
      * @param button    the button that was clicked.
      */
-    public void updateBoard(Symbol userSymbol, JButton button) {
-        try {
-            Image icon = ImageIO.read(View.class.getResource("icons/" + userSymbol.toString() + ".png"));
-            button.setIcon(new ImageIcon(icon));
-            button.setEnabled(false);
-        } catch (IOException ex) {
-            System.out.println("icons/" + userSymbol.toString() + ".png not found.");
-        }
+    public void updateBoardOnSelect(int[] oldButtons, int[] newButtons) {
+    	for(int index: oldButtons){
+               buttons[index].setIcon(null);
+    	}
+    	for(int index: newButtons){
+    		try {
+                Image icon = ImageIO.read(View.class.getResource("icons/X.png"));
+                buttons[index].setIcon(new ImageIcon(icon));
+            } catch (IOException ex) {
+                System.out.println("icons/.png not found.");
+            }
+	 	}
     }
+    
+    @Override
+	public void updateBoardOnMove(int[] buttonsToChange) {
+    	int initialButton = buttonsToChange[0];
+    	int middleButton = buttonsToChange[1];
+    	int targetButton = buttonsToChange[2];
+    	
+    	buttons[initialButton].setIcon(null);
+    	buttons[middleButton].setIcon(null);
+    	try {
+            Image icon = ImageIO.read(View.class.getResource("icons/O.png"));
+            buttons[targetButton].setIcon(new ImageIcon(icon));
+        } catch (IOException ex) {
+            System.out.println("icons/.png not found.");
+        }
+	}
 
     /**
      * Informs the user who won.

@@ -20,7 +20,14 @@ public interface ViewInterface
      * @param symbol    the symbol of the current player.
      * @param button    the button that was clicked.
      */
-    public void updateBoard(Symbol owner, JButton button);
+    public void updateBoardOnSelect(int[] oldButtons, int[] newButtons);
+    
+    /**
+     * Changes a field on selected button.
+     * 
+     * @param buttons    the button that was clicked.
+     */
+    public void updateBoardOnMove(int[] buttons);
     
     /**
      * Informs the user who won.
