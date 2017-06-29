@@ -8,7 +8,7 @@ public class Field{
     /**
      * Initializes the Field object with a Symbol.
      * 
-     * @param symbol    a Symbol (X, O, or NONE)
+     * @param symbol    a Symbol (O, or NONE)
      */
     private Field(Symbol symbol) {
         owner = symbol;
@@ -33,14 +33,14 @@ public class Field{
     /**
      * Sets the owner of a field.
      * 
-     * @param owner     a Symbol (X, O, or NONE)
+     * @param owner     a Symbol (O or NONE)
      */
     public void setOwner(Symbol owner) {
         this.owner = owner;
     }
 
     /**
-     * Returns the Symbol (X, O, or NONE) as a String.
+     * Returns the Symbol (O or NONE) as a String.
      * 
      * @return      the owner of a field as a String.
      */
