@@ -53,7 +53,7 @@ public class Controller implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!game.isGameOver()) {
+        if (!game.isGameOver(game.getUserSymbol())) {
         	int indexOfViewButton = getJButtonIndex((JButton) e.getSource());
             Pair coordinates = convertToCoordinates(indexOfViewButton);
             for(int i=0;i<4;i++){
@@ -176,6 +176,6 @@ public class Controller implements ActionListener {
      * @return      returns true if game is over. Returns false if otherwise.
      */
     public boolean isGameOver() {
-        return game.isGameOver();
+        return game.isGameOver(game.getUserSymbol());
     }
 }
