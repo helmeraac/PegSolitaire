@@ -36,12 +36,23 @@ public class Game {
     }
     public void validateMovement(Symbol userSymbol,int x, int y){
     	int coord[]= new int[8];
-    	if(x>=4 && x<=2 && y>=4 && y<=2){
-    		int upcoord[]=validateUp(userSymbol,x,y);
+    	int upcoord[]=validateUp(userSymbol,x,y);
+		int downcoord[]=validateDown(userSymbol,x,y);
+		int leftcoord[]=validateLeft(userSymbol,x,y);
+		int rightcoord[]=validateRight(userSymbol,x,y);
+    	if((x==4 && y<=6)||((x==2 || x== 3 || x==5 || x==6) && y>= 2 && y<=4)){
     		coord[0]=upcoord[0];
     		coord[1]=upcoord[1];
+    	}if((x==2 && y<=6)||((x==0 || x== 1 || x==3 || x==4) && y>= 2 && y<=4)){
+    		coord[2]=downcoord[0];
+    		coord[3]=downcoord[1];
+    	}if((x<=6 && y==4)||(x>= 2 && x<=4 && (y==2 || y==3  || y==5 || y==6))){
+    		coord[4]=leftcoord[0];
+    		coord[5]=leftcoord[1];
+    	}if((x<=6 && y==2)||(x>= 2 && x<=4 && (y==0 || y== 1 || y==3 || y==4))){
+    		coord[6]=rightcoord[0];
+    		coord[7]=rightcoord[1];
     	}
-    	
     }
     //This method compares the fields involved in the upside movement of a peg 
     public int[] validateUp(Symbol userSymbol,int x, int y){
@@ -100,8 +111,8 @@ public class Game {
      * 
      * @return      returns true is game is over. Returns false if otherwise.
      */
-    public boolean isGameOver() {      
-        if (pegsCounter == 1) return true; else return false;
+    public boolean isGameOver(Symbol userSymbol) {      
+        if (pegsCounter == 1 && board.getFieldOwner(3, 3).equals(userSymbol)) return true; else return false;
     }
     
     /**
