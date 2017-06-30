@@ -12,6 +12,11 @@ public class Game {
     private int pegsCounter; //the number of pegs in game
     private boolean didSomeoneWin; // to check if a player won or if it was a tie
     private Symbol none;
+    private int coord[];
+    private int upcoord[];
+	private int downcoord[];
+	private int leftcoord[];
+	private int rightcoord[];
     /**
      * Default constructor.
      * 
@@ -35,11 +40,11 @@ public class Game {
         board.setFieldOwner(userSymbol, x, y);
     }
     public void validateMovement(Symbol userSymbol,int x, int y){
-    	int coord[]= new int[8];
-    	int upcoord[]=validateUp(userSymbol,x,y);
-		int downcoord[]=validateDown(userSymbol,x,y);
-		int leftcoord[]=validateLeft(userSymbol,x,y);
-		int rightcoord[]=validateRight(userSymbol,x,y);
+    	coord= new int[8];
+    	upcoord=validateUp(userSymbol,x,y);
+		downcoord=validateDown(userSymbol,x,y);
+		leftcoord=validateLeft(userSymbol,x,y);
+		rightcoord=validateRight(userSymbol,x,y);
     	if((x==4 && y<=6)||((x==2 || x== 3 || x==5 || x==6) && y>= 2 && y<=4)){
     		coord[0]=upcoord[0];
     		coord[1]=upcoord[1];
