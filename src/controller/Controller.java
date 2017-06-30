@@ -15,6 +15,7 @@ public class Controller implements ActionListener {
     private ViewInterface view;
     public int oldmovements[];
     public int newmovements[];
+    public int newcoords[];
     
     /**
      * Overloaded constructor. Initializes the game and view, and
@@ -28,6 +29,7 @@ public class Controller implements ActionListener {
         this.view = new View();
         newmovements= new int[4];
         oldmovements= new int[4];
+        newcoords = new int[8];
         addActionListeners();
     }
 
@@ -53,14 +55,14 @@ public class Controller implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (!game.isGameOver(game.getUserSymbol())) {
+        if (!game.isGameOver()) {
         	int indexOfViewButton = getJButtonIndex((JButton) e.getSource());
             Pair coordinates = convertToCoordinates(indexOfViewButton);
             for(int i=0;i<4;i++){
             oldmovements[i]=newmovements[i];
             }
-            game.validateMovement(coordinates.first, 
-            		              coordinates.second);
+            newmovements=game.validateMovement(coordinates.first, 
+            		                        coordinates.second);
             for(int i=1;i<4;i++){
             	if(indexOfViewButton==oldmovements[i]){
             		
@@ -111,20 +113,12 @@ public class Controller implements ActionListener {
         int second = 0; // forced initialization
 
         switch (index) {
-            case 0: first = 0; second = 0; break;
-            case 1: first = 0; second = 1; break;
             case 2: first = 0; second = 2; break;
             case 3: first = 0; second = 3; break;
             case 4: first = 0; second = 4; break;
-            case 5: first = 0; second = 5; break;
-            case 6: first = 0; second = 6; break;
-            case 7: first = 1; second = 0; break;
-            case 8: first = 1; second = 1; break;
             case 9: first = 1; second = 2; break;
             case 10: first = 1; second = 3; break;
             case 11: first = 1; second = 4; break;
-            case 12: first = 1; second = 5; break;
-            case 13: first = 1; second = 6; break;
             case 14: first = 2; second = 0; break;
             case 15: first = 2; second = 1; break;
             case 16: first = 2; second = 2; break;
@@ -146,20 +140,12 @@ public class Controller implements ActionListener {
             case 32: first = 4; second = 4; break;
             case 33: first = 4; second = 5; break;
             case 34: first = 4; second = 6; break;
-            case 35: first = 5; second = 0; break;
-            case 36: first = 5; second = 1; break;
             case 37: first = 5; second = 2; break;
             case 38: first = 5; second = 3; break;
             case 39: first = 5; second = 4; break;
-            case 40: first = 5; second = 5; break;
-            case 41: first = 5; second = 6; break;
-            case 42: first = 6; second = 0; break;
-            case 43: first = 6; second = 1; break;
             case 44: first = 6; second = 2; break;
             case 45: first = 6; second = 3; break;
             case 46: first = 6; second = 4; break;
-            case 47: first = 6; second = 5; break;
-            case 48: first = 6; second = 6; break;
             default: break;
         }
 
@@ -173,6 +159,6 @@ public class Controller implements ActionListener {
      * @return      returns true if game is over. Returns false if otherwise.
      */
     public boolean isGameOver() {
-        return game.isGameOver(game.getUserSymbol());
+        return game.isGameOver();
     }
 }
