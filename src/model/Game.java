@@ -11,7 +11,7 @@ public class Game {
     private int turnsCounter; // the number of turns since the start of the game
     private int pegsCounter; //the number of pegs in game
     private boolean didSomeoneWin; // to check if a player won or if it was a tie
-    
+    private Symbol none;
     /**
      * Default constructor.
      * 
@@ -20,7 +20,7 @@ public class Game {
      */
     public Game() {
         board = new Board();
-        
+        none = board.getFieldOwner(0, 0);
         turnsCounter = 0;
         didSomeoneWin = false;
     }
@@ -34,12 +34,50 @@ public class Game {
     public void setFieldOwner(Symbol userSymbol, int x, int y) {
         board.setFieldOwner(userSymbol, x, y);
     }
-    
-    public void selectPeg(){
+    public void validateMovement(Symbol userSymbol,int x, int y){
+    	int coord[]= new int[8];
+    	if(x>=4 && x<=2 && y>=4 && y<=2){
+    		int upcoord[]=validateUp(userSymbol,x,y);
+    		coord[0]=upcoord[0];
+    		coord[1]=upcoord[1];
+    	}
     	
     }
-    public void movePeg(){
-    	
+    //This method compares the fields involved in the upside movement of a peg 
+    public int[] validateUp(Symbol userSymbol,int x, int y){
+    	int upcoord[]= new int[2];
+    	if(board.getFieldOwner(x, y).equals(userSymbol)&& board.getFieldOwner(x-1, y).equals(userSymbol) && board.getFieldOwner(x-2, y).equals(none)){
+    		upcoord[0]=x;
+    		upcoord[1]=y;
+    	}
+    	return upcoord;
+    }
+  //This method compares the fields involved in the downside movement of a peg 
+    public int[] validateDown(Symbol userSymbol,int x, int y){
+    	int downcoord[]= new int[2];
+    	if(board.getFieldOwner(x, y).equals(userSymbol)&& board.getFieldOwner(x+1, y).equals(userSymbol) && board.getFieldOwner(x+2, y).equals(none)){
+    		downcoord[0]=x;
+    		downcoord[1]=y;
+    	}
+    	return downcoord;
+    }
+  //This method compares the fields involved in the left side movement of a peg 
+    public int[] validateLeft(Symbol userSymbol,int x, int y){
+    	int leftcoord[]= new int[2];
+    	if(board.getFieldOwner(x, y).equals(userSymbol)&& board.getFieldOwner(x, y-1).equals(userSymbol) && board.getFieldOwner(x, y-2).equals(none)){
+    		leftcoord[0]=x;
+    		leftcoord[1]=y;
+    	}
+    	return leftcoord;
+    }
+  //This method compares the fields involved in the left side movement of a peg 
+    public int[] validateRight(Symbol userSymbol,int x, int y){
+    	int rightcoord[]= new int[2];
+    	if(board.getFieldOwner(x, y).equals(userSymbol)&& board.getFieldOwner(x, y+1).equals(userSymbol) && board.getFieldOwner(x, y+2).equals(none)){
+    		rightcoord[0]=x;
+    		rightcoord[1]=y;
+    	}
+    	return rightcoord;
     }
 
     /**
