@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class View extends JFrame implements ViewInterface {
-    private final GridLayout grid;     // default grid-size for tic-tac-toe
-    private final JButton[] buttons;   // an array containing the 9 buttons
+    private final GridLayout grid;
+    private final JButton[] buttons;
     private int[] disabledFields = {0,1,5,6,7,8,12,13,35,36,40,41,42,43,47,48};
 
     public View() {
@@ -51,12 +51,6 @@ public class View extends JFrame implements ViewInterface {
     }
 
     @Override
-    /**
-     * Changes a field to a user symbol.
-     * 
-     * @param symbol    the symbol of the current player.
-     * @param button    the button that was clicked.
-     */
     public void updateBoardOnSelect(int[] oldButtons, int[] newButtons) {
     	for(int index: oldButtons){
                buttons[index].setIcon(null);
