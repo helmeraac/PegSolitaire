@@ -59,11 +59,8 @@ public class Controller implements ActionListener {
             for(int i=0;i<4;i++){
             oldmovements[i]=newmovements[i];
             }
-            game.validateMovement(game.getUserSymbol(),coordinates.first, coordinates.second);
-            newmovements[0]= indexOfViewButton-14;
-            newmovements[1]= indexOfViewButton+14;
-            newmovements[2]= indexOfViewButton+2;
-            newmovements[3]= indexOfViewButton-2;
+            game.validateMovement(coordinates.first, 
+            		              coordinates.second);
             for(int i=1;i<4;i++){
             	if(indexOfViewButton==oldmovements[i]){
             		

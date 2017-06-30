@@ -56,6 +56,6 @@ public class Field{
      * A representation of an owner of a field.
      */
     public enum Symbol {
-        O, NONE
+        X,O, NONE
     }
 }
