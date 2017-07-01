@@ -114,6 +114,16 @@ public class Controller implements ActionListener {
             case 21: first = 3; second = 0; break;
             case 22: first = 3; second = 1; break;
             case 23: first = 3; second = 2; break;
+            default: parse2(index); break;
+        }
+
+        return Pair.create(first, second);
+    }
+    private Pair parse2(int index) {
+        int first = 0;
+        int second = 0; // forced initialization
+
+        switch (index) {
             case 24: first = 3; second = 3; break;
             case 25: first = 3; second = 4; break;
             case 26: first = 3; second = 5; break;
