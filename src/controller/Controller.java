@@ -13,9 +13,9 @@ import javax.swing.JButton;
 public class Controller implements ActionListener {
     private Game game;
     private ViewInterface view;
-    public int oldmovements[];
-    public int newmovements[];
-    public int newcoords[];
+    private int[] oldmovements;
+    private int[] newmovements;
+    private int[] coord;
     
     /**
      * Overloaded constructor. Initializes the game and view, and
@@ -27,10 +27,13 @@ public class Controller implements ActionListener {
     public Controller() {
         this.game = new Game();
         this.view = new View();
-        newmovements= new int[8];
+        newmovements= new int[4];
         oldmovements= new int[4];
-        newcoords = new int[8];
+        coord= new int[8];
         addActionListeners();
+        for(int i=0;i<coord.length;i++){
+        	coord[i]=0;
+        }
     }
 
     /**
@@ -61,8 +64,8 @@ public class Controller implements ActionListener {
             for(int i=0;i<4;i++){
             oldmovements[i]=newmovements[i];
             }
-            newmovements=game.validateMovement(coordinates.first, 
-            		                           coordinates.second);
+            coord=game.validateMovement(coordinates.first, 
+            		                    coordinates.second);
 
             game.incTurnCounterAndSetUserSymbol();
         }
