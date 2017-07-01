@@ -14,8 +14,5 @@ public class PegSolitaire {
                 Thread.currentThread().interrupt();
             }
         }
-        
-        //controller.informOutcome();
 	}
-
 }

@@ -27,7 +27,7 @@ public class Controller implements ActionListener {
     public Controller() {
         this.game = new Game();
         this.view = new View();
-        newmovements= new int[4];
+        newmovements= new int[8];
         oldmovements= new int[4];
         newcoords = new int[8];
         addActionListeners();
@@ -62,27 +62,9 @@ public class Controller implements ActionListener {
             oldmovements[i]=newmovements[i];
             }
             newmovements=game.validateMovement(coordinates.first, 
-            		                        coordinates.second);
-            for(int i=1;i<4;i++){
-            	if(indexOfViewButton==oldmovements[i]){
-            		
-            		view.updateBoardOnMove(newmovements);//TODO
-            	}else{
-            		view.updateBoardOnSelect(oldmovements, newmovements);
-            	}
-            }
+            		                           coordinates.second);
 
             game.incTurnCounterAndSetUserSymbol();
-
-            // The indices of the View JButton array is 0-8 while the
-            // indices of the Game Field array
-            // is a 2d 3x3 array, so I have to convert the index
-            // into x- and y- coordinates.
-            game.setFieldOwner(game.getUserSymbol(),
-                               coordinates.first,
-                               coordinates.second);
-
-            //view.updateBoard(game.getUserSymbol(), (JButton) e.getSource());
         }
     }
 

@@ -1,8 +1,7 @@
-package view;
+	package view;
 
 import model.Field.Symbol;
 
-import javax.swing.JButton;
 
 public interface ViewInterface
 {
