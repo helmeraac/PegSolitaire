@@ -241,4 +241,20 @@ public class Game {
 	public Symbol getUserSymbol() {
 		return null;
 	}
+
+	public int[] getUpcoord() {
+		return upcoord;
+	}
+
+	public int[] getDowncoord() {
+		return downcoord;
+	}
+
+	public int[] getLeftcoord() {
+		return leftcoord;
+	}
+
+	public int[] getRightcoord() {
+		return rightcoord;
+	}
 }
