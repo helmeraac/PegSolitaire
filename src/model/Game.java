@@ -11,11 +11,11 @@ public class Game {
     private int turnsCounter; // the number of turns since the start of the game
     private int pegsCounter; //the number of pegs in game
     private boolean didSomeoneWin; // to check if a player won or if it was a tie
-    private int coord[];
-    private int upcoord[];
-	private int downcoord[];
-	private int leftcoord[];
-	private int rightcoord[];
+    private int[] coord;
+    private int[] upcoord;
+	private int[] downcoord;
+	private int[] leftcoord;
+	private int[] rightcoord;
     /**
      * Default constructor.
      * 
@@ -46,20 +46,23 @@ public class Game {
      * @param y     the value for the y-coordinate of the Field
      */
     public int[] validateMovement(int x, int y){
-    	if((x==4 && y<=6)||((x==2 || x== 3 || x==5 || x==6) && y>= 2 && y<=4)){
-    		validateUp(x,y);
+    	for(int i=0;i<coord.length;i++){
+    		coord[i]=0;    		
+    	}
+    	validateUp(x,y);
+    	validateDown(x,y);
+    	validateLeft(x,y);
+    	validateRight(x,y);
+    	if(upcoord[0]!=0){
     		coord[0]=upcoord[0];
     		coord[1]=upcoord[1];
-    	}if((x==2 && y<=6)||((x==0 || x== 1 || x==3 || x==4) && y>= 2 && y<=4)){
-    		validateDown(x,y);
+    	}if(downcoord[0]!=0){
     		coord[2]=downcoord[0];
     		coord[3]=downcoord[1];
-    	}if((x<=6 && y==4)||(x>= 2 && x<=4 && (y==2 || y==3  || y==5 || y==6))){
-    		validateLeft(x,y);
+    	}if(leftcoord[0]!=0){
     		coord[4]=leftcoord[0];
     		coord[5]=leftcoord[1];
-    	}if((x<=6 && y==2)||(x>= 2 && x<=4 && (y==0 || y== 1 || y==3 || y==4))){
-    		validateRight(x,y);
+    	}if(rightcoord[0]!=0){
     		coord[6]=rightcoord[0];
     		coord[7]=rightcoord[1];
     	}
@@ -72,13 +75,23 @@ public class Game {
     public void updateBoardonMove(int[]mov, int x, int y){
     	if(mov[0]==x && mov[1]==y){
     		
-    	}if(mov[2]==x && mov[3]==y){
+    	}if(mov[2]==x && mov[3]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
     		
-    	}if(mov[4]==x && mov[5]==y){
+    	}if(mov[4]==x && mov[5]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
     		
-    	}if(mov[6]==x && mov[7]==y){
+    	}if(mov[6]==x && mov[7]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
     		
     	}    	
+    }
+    public void upMove(int[]mov, int x, int y){
+    	if(board.getFieldOwner(x, y).equals(Symbol.X)){
+    		board.setFieldOwner(Symbol.O, x, y);
+    		board.setFieldOwner(Symbol.NONE, x+1, y);
+    		board.setFieldOwner(Symbol.NONE, x+2, y);
+    		board.setFieldOwner(Symbol.NONE, x+2, y);
+    		board.setFieldOwner(Symbol.NONE, x+2, y);
+    		board.setFieldOwner(Symbol.NONE, x+1, y);
+    	}
     }
     //This method compares the fields involved in the upside movement of a peg 
     public void validateUp(int x, int y){
@@ -86,6 +99,8 @@ public class Game {
     		board.setFieldOwner(Symbol.X, x-2, y);
     		upcoord[0]=x-2;
     		upcoord[1]=y;
+    	}else{
+    		upcoord[0]=0;
     	}
     }
   //This method compares the fields involved in the downside movement of a peg 
@@ -94,6 +109,8 @@ public class Game {
     		board.setFieldOwner(Symbol.X, x+2, y);
     		downcoord[0]=x+2;
     		downcoord[1]=y;
+    	}else{
+    		downcoord[0]=0;
     	}
     }
   //This method compares the fields involved in the left side movement of a peg 
@@ -102,6 +119,8 @@ public class Game {
     		board.setFieldOwner(Symbol.X, x, y-2);
     		leftcoord[0]=x;
     		leftcoord[1]=y-2;
+    	}else{
+    		leftcoord[0]=0;
     	}
     }
   //This method compares the fields involved in the left side movement of a peg 
@@ -110,6 +129,8 @@ public class Game {
     		board.setFieldOwner(Symbol.X, x, y+2);
     		rightcoord[0]=x;
     		rightcoord[1]=y+2;
+    	}else{
+    		rightcoord[0]=0;
     	}
     }
 
