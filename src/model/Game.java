@@ -72,26 +72,73 @@ public class Game {
      * This method  receives an array with the coordinates of the fields for available movements,
      * an two integers that are the coordinates of the movement done
      */
-    public void updateBoardonMove(int[]mov, int x, int y){
+    public int[] updateBoardonMove(int[]mov, int x, int y){
     	if(mov[0]==x && mov[1]==y){
-    		
-    	}if(mov[2]==x && mov[3]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
-    		
-    	}if(mov[4]==x && mov[5]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
-    		
-    	}if(mov[6]==x && mov[7]==y && board.getFieldOwner(x, y).equals(Symbol.X)){
-    		
-    	}    	
+    		upMove(x,y);
+    		mov[0]=0;
+    		mov[1]=0;
+    	}if(mov[2]==x && mov[3]==y){
+    		downMove(x,y);
+    		mov[2]=0;
+    		mov[3]=0;
+    	}if(mov[4]==x && mov[5]==y){
+    		leftMove(x,y);
+    		mov[4]=0;
+    		mov[5]=0;
+    	}if(mov[6]==x && mov[7]==y){
+    		rightMove(x,y);
+    		mov[6]=0;
+    		mov[7]=0;
+    	}else{
+    		undoSelect(mov);
+    	}
+    	return mov;
     }
-    public void upMove(int[]mov, int x, int y){
+    public void upMove(int x, int y){
     	if(board.getFieldOwner(x, y).equals(Symbol.X)){
     		board.setFieldOwner(Symbol.O, x, y);
     		board.setFieldOwner(Symbol.NONE, x+1, y);
     		board.setFieldOwner(Symbol.NONE, x+2, y);
-    		board.setFieldOwner(Symbol.NONE, x+2, y);
-    		board.setFieldOwner(Symbol.NONE, x+2, y);
-    		board.setFieldOwner(Symbol.NONE, x+1, y);
+    		board.setFieldOwner(Symbol.NONE, x+2, y+2);
+    		board.setFieldOwner(Symbol.NONE, x+2, y-2);
+    		board.setFieldOwner(Symbol.NONE, x+4, y);
     	}
+    }
+    public void downMove(int x, int y){
+    	if(board.getFieldOwner(x, y).equals(Symbol.X)){
+    		board.setFieldOwner(Symbol.O, x, y);
+    		board.setFieldOwner(Symbol.NONE, x-1, y);
+    		board.setFieldOwner(Symbol.NONE, x-2, y);
+    		board.setFieldOwner(Symbol.NONE, x-2, y-2);
+    		board.setFieldOwner(Symbol.NONE, x-2, y+2);
+    		board.setFieldOwner(Symbol.NONE, x-4, y);
+    	}
+    }
+    public void leftMove(int x, int y){
+    	if(board.getFieldOwner(x, y).equals(Symbol.X)){
+    		board.setFieldOwner(Symbol.O, x, y);
+    		board.setFieldOwner(Symbol.NONE, x, y+1);
+    		board.setFieldOwner(Symbol.NONE, x, y+2);
+    		board.setFieldOwner(Symbol.NONE, x, y+4);
+    		board.setFieldOwner(Symbol.NONE, x-2, y+2);
+    		board.setFieldOwner(Symbol.NONE, x+2, y+2);
+    	}
+    }
+    public void rightMove(int x, int y){
+    	if(board.getFieldOwner(x, y).equals(Symbol.X)){
+    		board.setFieldOwner(Symbol.O, x, y);
+    		board.setFieldOwner(Symbol.NONE, x, y-1);
+    		board.setFieldOwner(Symbol.NONE, x, y-2);
+    		board.setFieldOwner(Symbol.NONE, x, y-4);
+    		board.setFieldOwner(Symbol.NONE, x-2, y-2);
+    		board.setFieldOwner(Symbol.NONE, x+2, y-2);
+    	}
+    }
+    public void undoSelect(int[] x){
+    	board.setFieldOwner(Symbol.NONE, x[0], x[1]);
+    	board.setFieldOwner(Symbol.NONE, x[2], x[3]);
+    	board.setFieldOwner(Symbol.NONE, x[4], x[5]);
+    	board.setFieldOwner(Symbol.NONE, x[6], x[7]);
     }
     //This method compares the fields involved in the upside movement of a peg 
     public void validateUp(int x, int y){
