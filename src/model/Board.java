@@ -13,7 +13,7 @@ public class Board {
         for (int i = 0; i < BOARD_SIDE_LENGTH; i++) {
         	for (int j = 0; j < BOARD_SIDE_LENGTH; j++) {
         		gameGrid[i][j] = Field.getDefault();
-        		if((i <= 1 && (j <=1||j >=5))||(i >= 5 && (j <=1||j >=5))||(i == 3 && j == 3)){
+        		if((i == 3 && j == 3)){
         			gameGrid[i][j] = Field.getNone();
         		}
         	}
