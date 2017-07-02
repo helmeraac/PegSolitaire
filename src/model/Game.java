@@ -77,10 +77,22 @@ public class Game {
     public int[] updateBoardonMove(int[]mov, int x, int y){
     	if(mov[0]==x && mov[1]==y){
     		upMove(x,y);
+    		pegsToChange[0] = x+2;
+    		pegsToChange[1] = y;
+    		pegsToChange[2] = x+1;
+    		pegsToChange[3] = y;
+    		pegsToChange[4] = x;
+    		pegsToChange[5] = y;
     		mov[0]=0;
     		mov[1]=0;
     	}if(mov[2]==x && mov[3]==y){
     		downMove(x,y);
+    		pegsToChange[0] = x-2;
+    		pegsToChange[1] = y;
+    		pegsToChange[2] = x-1;
+    		pegsToChange[3] = y;
+    		pegsToChange[4] = x;
+    		pegsToChange[5] = y;
     		mov[2]=0;
     		mov[3]=0;
     	}if(mov[4]==x && mov[5]==y){
@@ -95,6 +107,12 @@ public class Game {
     		mov[5]=0;
     	}if(mov[6]==x && mov[7]==y){
     		rightMove(x,y);
+    		pegsToChange[0] = x;
+    		pegsToChange[1] = y-2;
+    		pegsToChange[2] = x;
+    		pegsToChange[3] = y-1;
+    		pegsToChange[4] = x;
+    		pegsToChange[5] = y;
     		mov[6]=0;
     		mov[7]=0;
     	}else{
