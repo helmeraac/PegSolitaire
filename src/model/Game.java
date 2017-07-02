@@ -223,8 +223,10 @@ public class Game {
      * 
      * @return      returns true is game is over. Returns false if otherwise.
      */
-    public boolean isGameOver() {      
-        if (pegsCounter == 1 && board.getFieldOwner(3, 3).equals(Symbol.O)) return true; else return false;
+    public boolean isGameOver() {
+    	boolean bool;
+        if (pegsCounter == 1 && board.getFieldOwner(3, 3).equals(Symbol.O)) bool=true; else bool=false;
+        return bool;
     }
     
     /**
