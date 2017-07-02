@@ -99,56 +99,8 @@ public class Controller implements ActionListener {
      * @return          a Pair object containing the x and y coordinates.
      */
     private Pair convertToCoordinates(int index) {
-        int first = 0;
-        int second = 0; // forced initialization
-
-        switch (index) {
-            case 2: first = 0; second = 2; break;
-            case 3: first = 0; second = 3; break;
-            case 4: first = 0; second = 4; break;
-            case 9: first = 1; second = 2; break;
-            case 10: first = 1; second = 3; break;
-            case 11: first = 1; second = 4; break;
-            case 14: first = 2; second = 0; break;
-            case 15: first = 2; second = 1; break;
-            case 16: first = 2; second = 2; break;
-            case 17: first = 2; second = 3; break;
-            case 18: first = 2; second = 4; break;
-            case 19: first = 2; second = 5; break;
-            case 20: first = 2; second = 6; break;
-            case 21: first = 3; second = 0; break;
-            case 22: first = 3; second = 1; break;
-            case 23: first = 3; second = 2; break;
-            default: parse2(index); break;
-        }
-
-        return Pair.create(first, second);
-    }
-    private Pair parse2(int index) {
-        int first = 0;
-        int second = 0; // forced initialization
-
-        switch (index) {
-            case 24: first = 3; second = 3; break;
-            case 25: first = 3; second = 4; break;
-            case 26: first = 3; second = 5; break;
-            case 27: first = 3; second = 6; break;
-            case 28: first = 4; second = 0; break;
-            case 29: first = 4; second = 1; break;
-            case 30: first = 4; second = 2; break;
-            case 31: first = 4; second = 3; break;
-            case 32: first = 4; second = 4; break;
-            case 33: first = 4; second = 5; break;
-            case 34: first = 4; second = 6; break;
-            case 37: first = 5; second = 2; break;
-            case 38: first = 5; second = 3; break;
-            case 39: first = 5; second = 4; break;
-            case 44: first = 6; second = 2; break;
-            case 45: first = 6; second = 3; break;
-            case 46: first = 6; second = 4; break;
-            default: break;
-        }
-
+    	int first = index/7;
+    	int second = index%7;
         return Pair.create(first, second);
     }
     
