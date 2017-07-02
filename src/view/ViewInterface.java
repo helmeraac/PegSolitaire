@@ -39,4 +39,6 @@ public interface ViewInterface
      * Informs the user of the tie.
      */
     public void informTie();
+
+	public void changeCounter(int i);
 }

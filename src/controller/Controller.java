@@ -78,6 +78,7 @@ public class Controller implements ActionListener {
             		
             		view.updateBoardOnMove(pegsToMove);
             		oldmovements[i] = 0;
+            		game.incTurnCounterAndSetUserSymbol();
             	}
             }
             for(int i=0;i<8;i++){
@@ -95,7 +96,8 @@ public class Controller implements ActionListener {
             	oldmovements[i]=newmovements[i];
             }
             
-            game.incTurnCounterAndSetUserSymbol();
+            
+            view.changeCounter(game.getTurnsCounter());
         }
     }
 

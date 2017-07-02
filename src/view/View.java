@@ -111,6 +111,11 @@ public class View extends JFrame implements ViewInterface {
     public JButton getButton(int index) {
         return buttons[index];
     }
+    
+    public void changeCounter(int counter) {
+    	buttons[0].setIcon(null);
+        buttons[0].setText("Turno: " + Integer.toString(counter));
+    }
 
     /**
      * Returns the size of the buttons[] array.
