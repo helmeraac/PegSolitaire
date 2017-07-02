@@ -64,6 +64,8 @@ public class Controller implements ActionListener {
             for(int i=0;i<4;i++){
             oldmovements[i]=newmovements[i];
             }
+            game.updateBoardonMove(coord, coordinates.first,
+            		                      coordinates.second);
             coord=game.validateMovement(coordinates.first, 
             		                    coordinates.second);
             newmovements[0]=convertToIndex(coord[0],coord[1]);
@@ -71,7 +73,7 @@ public class Controller implements ActionListener {
             newmovements[2]=convertToIndex(coord[4],coord[4]);
             newmovements[3]=convertToIndex(coord[6],coord[7]);
             view.updateBoardOnSelect(oldmovements, newmovements);
-
+            view.updateBoardOnMove(oldmovements);
             game.incTurnCounterAndSetUserSymbol();
         }
     }
