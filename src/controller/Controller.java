@@ -66,6 +66,11 @@ public class Controller implements ActionListener {
             }
             coord=game.validateMovement(coordinates.first, 
             		                    coordinates.second);
+            newmovements[0]=convertToIndex(coord[0],coord[1]);
+            newmovements[1]=convertToIndex(coord[2],coord[3]);
+            newmovements[2]=convertToIndex(coord[4],coord[4]);
+            newmovements[3]=convertToIndex(coord[6],coord[7]);
+            view.updateBoardOnSelect(oldmovements, newmovements);
 
             game.incTurnCounterAndSetUserSymbol();
         }
@@ -145,6 +150,10 @@ public class Controller implements ActionListener {
         }
 
         return Pair.create(first, second);
+    }
+    
+    private int convertToIndex(int x, int y){
+    	return((x*7)+y);
     }
 
 
