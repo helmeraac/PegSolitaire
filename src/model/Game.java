@@ -16,6 +16,7 @@ public class Game {
 	private int[] downcoord;
 	private int[] leftcoord;
 	private int[] rightcoord;
+	private int[] pegsToChange;
     /**
      * Default constructor.
      * 
@@ -30,6 +31,7 @@ public class Game {
     	leftcoord = new int [2];
     	rightcoord = new int [2];
         turnsCounter = 0;
+        pegsToChange = new int[6];
         didSomeoneWin = false;
     }
 
@@ -83,6 +85,12 @@ public class Game {
     		mov[3]=0;
     	}if(mov[4]==x && mov[5]==y){
     		leftMove(x,y);
+    		pegsToChange[0] = x;
+    		pegsToChange[1] = y;
+    		pegsToChange[2] = x;
+    		pegsToChange[3] = y-1;
+    		pegsToChange[4] = x;
+    		pegsToChange[5] = y-2;
     		mov[4]=0;
     		mov[5]=0;
     	}if(mov[6]==x && mov[7]==y){
@@ -92,7 +100,7 @@ public class Game {
     	}else{
     		undoSelect(mov);
     	}
-    	return mov;
+    	return pegsToChange;
     }
     public void upMove(int x, int y){
     	if(board.getFieldOwner(x, y).equals(Symbol.X)){

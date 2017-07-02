@@ -16,6 +16,7 @@ public class Controller implements ActionListener {
     private int[] oldmovements;
     private int[] newmovements;
     private int[] coord;
+    private int[] pegsToMove;
     
     /**
      * Overloaded constructor. Initializes the game and view, and
@@ -29,6 +30,7 @@ public class Controller implements ActionListener {
         this.view = new View();
         newmovements= new int[4];
         oldmovements= new int[4];
+        pegsToMove = new int[3];
         coord= new int[8];
         addActionListeners();
         for(int i=0;i<coord.length;i++){
@@ -61,19 +63,31 @@ public class Controller implements ActionListener {
         if (!game.isGameOver()) {
         	int indexOfViewButton = getJButtonIndex((JButton) e.getSource());
             Pair coordinates = convertToCoordinates(indexOfViewButton);
-            for(int i=0;i<4;i++){
-            oldmovements[i]=newmovements[i];
-            }
-            game.updateBoardonMove(coord, coordinates.first,
-            		                      coordinates.second);
+            
             coord=game.validateMovement(coordinates.first, 
             		                    coordinates.second);
+            for(int i: oldmovements){
+            	if(i == indexOfViewButton){
+            		int [] pegsCoords = game.updateBoardonMove(coord,coordinates.first, 
+		                    coordinates.second);
+            		pegsToMove[0] = convertToIndex(pegsCoords[0],pegsCoords[1]);
+            		pegsToMove[1] = convertToIndex(pegsCoords[2],pegsCoords[3]);
+            		pegsToMove[2] = convertToIndex(pegsCoords[4],pegsCoords[5]);
+
+            		view.updateBoardOnMove(pegsToMove);
+            	}
+            }
             newmovements[0]=convertToIndex(coord[0],coord[1]);
             newmovements[1]=convertToIndex(coord[2],coord[3]);
             newmovements[2]=convertToIndex(coord[4],coord[4]);
             newmovements[3]=convertToIndex(coord[6],coord[7]);
+            
             view.updateBoardOnSelect(oldmovements, newmovements);
-            view.updateBoardOnMove(oldmovements);
+            
+            for(int i=0;i<4;i++){
+            	oldmovements[i]=newmovements[i];
+            }
+            
             game.incTurnCounterAndSetUserSymbol();
         }
     }
