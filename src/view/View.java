@@ -70,7 +70,9 @@ public class View extends JFrame implements ViewInterface {
     	int initialButton = buttonsToChange[0];
     	int middleButton = buttonsToChange[1];
     	int targetButton = buttonsToChange[2];
-    	
+    	for(int k: buttonsToChange){
+			System.out.println(k); 
+		}
     	buttons[initialButton].setIcon(null);
     	buttons[middleButton].setIcon(null);
     	try {

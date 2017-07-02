@@ -86,11 +86,11 @@ public class Game {
     	}if(mov[4]==x && mov[5]==y){
     		leftMove(x,y);
     		pegsToChange[0] = x;
-    		pegsToChange[1] = y;
+    		pegsToChange[1] = y+2;
     		pegsToChange[2] = x;
-    		pegsToChange[3] = y-1;
+    		pegsToChange[3] = y+1;
     		pegsToChange[4] = x;
-    		pegsToChange[5] = y-2;
+    		pegsToChange[5] = y;
     		mov[4]=0;
     		mov[5]=0;
     	}if(mov[6]==x && mov[7]==y){
@@ -107,9 +107,6 @@ public class Game {
     		board.setFieldOwner(Symbol.O, x, y);
     		board.setFieldOwner(Symbol.NONE, x+1, y);
     		board.setFieldOwner(Symbol.NONE, x+2, y);
-    		board.setFieldOwner(Symbol.NONE, x+2, y+2);
-    		board.setFieldOwner(Symbol.NONE, x+2, y-2);
-    		board.setFieldOwner(Symbol.NONE, x+4, y);
     	}
     }
     public void downMove(int x, int y){
@@ -117,9 +114,6 @@ public class Game {
     		board.setFieldOwner(Symbol.O, x, y);
     		board.setFieldOwner(Symbol.NONE, x-1, y);
     		board.setFieldOwner(Symbol.NONE, x-2, y);
-    		board.setFieldOwner(Symbol.NONE, x-2, y-2);
-    		board.setFieldOwner(Symbol.NONE, x-2, y+2);
-    		board.setFieldOwner(Symbol.NONE, x-4, y);
     	}
     }
     public void leftMove(int x, int y){
@@ -127,9 +121,6 @@ public class Game {
     		board.setFieldOwner(Symbol.O, x, y);
     		board.setFieldOwner(Symbol.NONE, x, y+1);
     		board.setFieldOwner(Symbol.NONE, x, y+2);
-    		board.setFieldOwner(Symbol.NONE, x, y+4);
-    		board.setFieldOwner(Symbol.NONE, x-2, y+2);
-    		board.setFieldOwner(Symbol.NONE, x+2, y+2);
     	}
     }
     public void rightMove(int x, int y){
@@ -137,9 +128,6 @@ public class Game {
     		board.setFieldOwner(Symbol.O, x, y);
     		board.setFieldOwner(Symbol.NONE, x, y-1);
     		board.setFieldOwner(Symbol.NONE, x, y-2);
-    		board.setFieldOwner(Symbol.NONE, x, y-4);
-    		board.setFieldOwner(Symbol.NONE, x-2, y-2);
-    		board.setFieldOwner(Symbol.NONE, x+2, y-2);
     	}
     }
     public void undoSelect(int[] x){
